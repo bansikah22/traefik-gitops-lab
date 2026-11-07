@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-demo
+spec:
+  template:
+    spec:
+      containers:
+        - name: traefik-demo
+          env:
+            - name: ICON_COLOR
+              value: white

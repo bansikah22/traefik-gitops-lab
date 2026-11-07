@@ -1,0 +1,15 @@
+ports:
+  websecure:
+    tls:
+      enabled: true
+providers:
+  kubernetesCRD:
+    allowCrossNamespace: true
+    allowExternalNameServices: true
+  kubernetesIngress:
+    publishedService:
+      enabled: true
+      pathOverride: traefik-system/traefik-proxy
+    allowExternalNameServices: true
+rollingUpdate:
+  maxUnavailable: 0

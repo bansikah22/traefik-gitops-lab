@@ -1,0 +1,26 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-demo-http
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`traefik-demo.production.example.invalid`)
+      services:
+        - name: traefik-demo
+          port: 80
+      middlewares:
+        - name: redirect-scheme-permanent
+          namespace: traefik-system
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-demo-https
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`traefik-demo.production.example.invalid`)
+      services:
+        - name: traefik-demo
+          port: 80

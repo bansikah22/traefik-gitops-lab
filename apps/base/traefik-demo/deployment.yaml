@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: traefik-demo
+  name: traefik-demo
+spec:
+  selector:
+    matchLabels:
+      app: traefik-demo
+  template:
+    metadata:
+      labels:
+        app: traefik-demo
+    spec:
+      containers:
+        - image: monachus/traefik-demo
+          name: traefik-demo
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            httpGet:
+              path: /
+              port: 8080
